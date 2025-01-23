@@ -31,8 +31,11 @@ const initializeDBAndServer = async () => {
 
 initializeDBAndServer();
 
-app.get("/", (req, res) => {
-    res.send("Mohan is the real hero!");
+app.get("/", async (req, res) => {
+    const query = 'SELECT * FROM user;';
+    const response = await db.all(query);
+
+    res.send(response);
 });
 
 module.exports = app;
