@@ -2,15 +2,14 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
-
 app.get("/", (req, res) => {
-    res.send("mohan is the real hero");
-}
-)
+    res.send("Mohan is the real hero!");
+});
 
-app.listen(3000, () => {
-    console.log("running at 3000")
-})
+const port = process.env.PORT || 3000;
 
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
 module.exports = app;
