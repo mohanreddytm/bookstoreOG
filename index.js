@@ -2,14 +2,37 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
-app.get("/", (req, res) => {
-    res.send("Mohan is the real hero!");
-});
+const path = require("path");
+
+const {open} = require('sqlite');
+const sqlite3 = require('sqlite3');
+
+const dbPath = path.join(__dirname, "bookstore.db");
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+let db = null;
+
+const initializeDBAndServer = async () => {
+    try {
+        db = await open({
+            filename: dbPath,
+            driver: sqlite3.Database
+        });
+        app.listen(port, () => {
+            console.log(`Server is Running at http://localhost:${port}`);
+        });
+    } catch (e) {
+        console.log(`DB Error: ${e.message}`);
+        process.exit(1);
+    }
+};
+
+
+initializeDBAndServer();
+
+app.get("/", (req, res) => {
+    res.send("Mohan is theaaaa real hero!");
 });
 
 module.exports = app;
