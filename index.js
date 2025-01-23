@@ -7,7 +7,8 @@ const path = require("path");
 const {open} = require('sqlite');
 const sqlite3 = require('sqlite3');
 
-const dbPath = path.join(__dirname, "bookstore.db");
+const dbPath = path.join(process.cwd(), "bookstore.db");
+
 
 const port = process.env.PORT || 3000;
 
