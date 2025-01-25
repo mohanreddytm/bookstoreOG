@@ -8,10 +8,10 @@ const corsConfig = {
     methods: ["GET","POST","PUT","DELETE"],
 };
 
-app.use(express.json());
+app.options("", cors(corsConfig));
 app.use(cors(corsConfig));
 const path = require("path");
-
+app.use(express.json());
 const {open} = require('sqlite');
 const sqlite3 = require('sqlite3');
 
